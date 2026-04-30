@@ -1,65 +1,200 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { MatrixCodeRain } from "@/components/ui/matrix-code-rain";
+import { TypeAnimation } from "react-type-animation";
+
+
+const event_date = new Date("2026-06-18T08:00:00");
+
+function useCountdown() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    function tick() {
+      const diff = event_date.getTime() - Date.now();
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    }
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return timeLeft;
+}
+
+function TimeCard({ value, label }: { value: number; label: string }) {
+  return (
+    <div
+      style={{
+        background: "rgba(255, 255, 255, 0.04)",
+        backdropFilter: "blur(16px)",
+        border: "1px solid rgba(255, 160, 30, 0.18)",
+        borderRadius: "16px",
+        padding: "18px 12px",
+        textAlign: "center",
+        maxWidth: "100px",
+        maxHeight: "120px",
+        boxShadow: "0 4px 32px rgba(255, 120, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.06)",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "58px",
+          fontWeight: 800,
+          background: "linear-gradient(160deg, #FF8C00 0%, #FFD700 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          lineHeight: 1,
+          fontVariantNumeric: "tabular-nums",
+          letterSpacing: "-0.02em",
+        }}
+      >
+        {String(value).padStart(2, "0")}
+      </div>
+      <div
+        style={{
+          fontSize: "10px",
+          letterSpacing: "0.25em",
+          color: "rgba(255, 200, 100, 0.55)",
+          marginTop: "10px",
+          fontWeight: 600,
+          textTransform: "uppercase",
+        }}
+      >
+        {label}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
+  const { days, hours, minutes, seconds } = useCountdown();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+
+    // bg of the landing page
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(160deg, #0F110C 30%)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+
+      {/*Matrix code component styling*/}
+      <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 0,
+        pointerEvents: "none"
+      }}
+      >
+        <MatrixCodeRain height="100%"/>
+      </div>
+
+      {/* Countdown timer — right side & vertically centered */}
+      <div
+        style={{
+          position: "absolute",
+          right: "64px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "14px",
+          alignItems: "center",
+          zIndex: 1,
+        }}
+        >
+        <p
+          style={{
+            color: "rgba(255, 200, 100, 0.45)",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            fontWeight: 600,
+            marginBottom: "4px",
+            zIndex: 1,
+          }}
+        >
+          June 18, 2026
+        </p>
+        <TimeCard value={days} label="Days" />
+        <TimeCard value={hours} label="Hours" />
+        <TimeCard value={minutes} label="Minutes" />
+        <TimeCard value={seconds} label="Seconds" />
+      </div>
+
+      {/* Title — bottom left */}
+      <h1
+        style={{
+          position: "absolute",
+          bottom: "100px",
+          left: "50px",
+          paddingBottom: "10px",
+          margin: 0,
+          fontSize: "clamp(52px, 9vw, 128px)",
+          fontWeight: 500,
+          lineHeight: 0.95,
+          background: "linear-gradient(125deg, #FF6200 0%, #FF8C00 35%, #FFBF00 70%, #FFD700 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          letterSpacing: "-0.03em",
+        }}
+      >
+        Bay Valley Hacks
+      </h1>
+
+      {/* Typewriter effect for subtitle*/}
+      <div
+        style = {{
+          position: "absolute",
+          bottom: "40px",
+          left: "100px",
+
+          border: "1px",
+          borderRadius: "16px",
+          paddingLeft: "10px",
+          paddingRight: "10px",
+          backdropFilter: "blur(1px)",
+
+        }}
+      >
+        <TypeAnimation
+          sequence = {[
+            "The Bay Area's largest high school hackathon",
+            2000,
+            "$25k + in Prizes",
+            2000,
+            "500 + hackers",
+            2000,
+            "Grades 9-12, Free for All",
+            2000,
+          ]}
+          wrapper="span"
+          speed={50}
+          style = {{ 
+            fontSize: '1.75em',
+            letterSpacing: "-0.03em",
+            color: "rgb(221, 225, 228)",
+          }}
+          repeat = {Infinity}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
+
     </div>
   );
 }
