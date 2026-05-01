@@ -106,7 +106,7 @@ export default function Home() {
         <MatrixCodeRain height="100%"/>
       </div>
 
-      {/* Countdown timer — right side & vertically centered */}
+      {/* Date + Countdown timer — right side & vertically centered */}
       <div
         style={{
           position: "absolute",
@@ -122,13 +122,17 @@ export default function Home() {
         >
         <p
           style={{
-            color: "rgba(255, 200, 100, 0.45)",
-            fontSize: "11px",
+            color: "rgb(255, 201, 100)",
+            fontSize: "20px",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 600,
-            marginBottom: "4px",
+            marginBottom: "7px",
+            paddingLeft:"7px",
+            paddingRight:"7px",
             zIndex: 1,
+            border: "1px solid rgba(255, 201, 100, .5)",
+            borderRadius: "16px",
           }}
         >
           June 18, 2026
