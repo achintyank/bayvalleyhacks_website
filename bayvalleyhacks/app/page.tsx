@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { MatrixCodeRain } from "@/components/ui/matrix-code-rain";
 import { TypeAnimation } from "react-type-animation";
+import Navbar from "@/components/ui/navbar";
 
 
 const event_date = new Date("2026-06-18T08:00:00");
@@ -137,6 +138,17 @@ export default function Home() {
         <TimeCard value={minutes} label="Minutes" />
         <TimeCard value={seconds} label="Seconds" />
       </div>
+
+      {/* Navbar - top middle */}
+      <div
+        style={{
+          width: "400",
+          position: "fixed",
+          top:"20px",
+          left:"30%",
+        }}>
+          <Navbar/>
+        </div>
 
       {/* Title — bottom left */}
       <h1
