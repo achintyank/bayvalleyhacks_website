@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { MatrixCodeRain } from "@/components/ui/matrix-code-rain";
 import { TypeAnimation } from "react-type-animation";
 import Navbar from "@/components/ui/navbar";
+import AboutSection from "@/components/ui/aboutSection";
 
 
 const event_date = new Date("2026-06-18T08:00:00");
@@ -78,7 +80,7 @@ function TimeCard({ value, label }: { value: number; label: string }) {
   );
 }
 
-export default function Home() {
+function HeroSection() {
   const { days, hours, minutes, seconds } = useCountdown();
 
   return (
@@ -87,19 +89,17 @@ export default function Home() {
     <div
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(160deg, #0F110C 30%)",
+        background: "linear-gradient(160deg, #0F110C 30%)",
         position: "relative",
-        overflow: "hidden",
       }}
     >
 
       {/*Matrix code component styling*/}
       <div
       style={{
-        position: "absolute",
+        position: "fixed",
         inset: 0,
-        zIndex: 0,
+        zIndex: 1,
         pointerEvents: "none"
       }}
       >
@@ -120,7 +120,7 @@ export default function Home() {
           zIndex: 1,
         }}
         >
-        <p
+        <motion.button
           style={{
             color: "rgb(255, 201, 100)",
             fontSize: "20px",
@@ -133,10 +133,14 @@ export default function Home() {
             zIndex: 1,
             border: "1px solid rgba(255, 201, 100, .5)",
             borderRadius: "16px",
+            cursor:"pointer",
           }}
+          whileHover= {{scale:1.1}}
+          transition= {{ type: "spring", stiffness: 100, damping: 10}}
         >
           June 18, 2026
-        </p>
+        </motion.button>
+
         <TimeCard value={days} label="Days" />
         <TimeCard value={hours} label="Hours" />
         <TimeCard value={minutes} label="Minutes" />
@@ -146,10 +150,11 @@ export default function Home() {
       {/* Navbar - top middle */}
       <div
         style={{
-          width: "400",
+          width: "400px",
           position: "fixed",
           top:"20px",
           left:"30%",
+          zIndex: 2,
         }}>
           <Navbar/>
         </div>
@@ -174,7 +179,7 @@ export default function Home() {
         Bay Valley Hacks
       </h1>
 
-      {/* Typewriter effect for subtitle*/}
+      {/* Typewriter effect for subtitle/animation*/}
       <div
         style = {{
           position: "absolute",
@@ -202,7 +207,7 @@ export default function Home() {
           ]}
           wrapper="span"
           speed={50}
-          style = {{ 
+          style = {{
             fontSize: '1.75em',
             letterSpacing: "-0.03em",
             color: "rgb(221, 225, 228)",
@@ -212,5 +217,21 @@ export default function Home() {
       </div>
 
     </div>
+  );
+}
+
+
+export default function Home() {
+
+  return (
+
+    <>
+    <div
+    >
+    <HeroSection/>
+    <AboutSection/>
+    </div>
+    </>
+
   );
 }

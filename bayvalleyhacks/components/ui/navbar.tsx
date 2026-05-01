@@ -8,13 +8,13 @@ export default function Navbar() {
                 top: 16,
                 left: "50%",
                 transform: "translateX(-50%)",
-                zIndex: 1,
+                zIndex: 2,
                 display: "flex",
                 alignItems: "center",
                 gap: "40px",
                 padding: "10px 24px",
-                backdropFilter: "blur(12px)",
-                background: "rgba(8, 8, 12, 0.65)",
+                background: "rgba(8, 8, 12, .4)",
+                backdropFilter: "blur(8px)",
                 border: "1px solid rgba(255, 160, 30, 0.18)",
                 borderRadius: "16px",
                 whiteSpace: "nowrap",
@@ -27,6 +27,7 @@ export default function Navbar() {
                 fontSize: "17px",
                 letterSpacing: "0.02em",
                 marginRight:"10px",
+                cursor:"pointer",
             }}>
                 BVH
             </span>
@@ -44,6 +45,7 @@ export default function Navbar() {
                             fontSize: "14px",
                             letterSpacing: "0.03em",
                             textDecoration: "none",
+                            cursor:"pointer",
                         }}
                     >
                         {link}

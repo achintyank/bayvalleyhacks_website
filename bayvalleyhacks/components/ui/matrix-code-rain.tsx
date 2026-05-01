@@ -103,7 +103,7 @@ export const MatrixCodeRain = ({
       className={cn("relative overflow-hidden")}
       style={{
         width: fullScreen ? "100vw" : width,
-        height: fullScreen ? "100vh" : height,
+        height: fullScreen ? "200vh" : height,
       }}
     >
       <canvas
