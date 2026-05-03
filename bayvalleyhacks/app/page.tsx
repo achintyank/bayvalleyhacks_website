@@ -6,6 +6,8 @@ import { MatrixCodeRain } from "@/components/ui/matrix-code-rain";
 import { TypeAnimation } from "react-type-animation";
 import Navbar from "@/components/ui/navbar";
 import AboutSection from "@/components/ui/aboutSection";
+import Schedule from "@/components/ui/schedule";
+import Sponsors from "@/components/ui/sponsors";
 
 
 const event_date = new Date("2026-06-18T08:00:00");
@@ -204,6 +206,8 @@ function HeroSection() {
             2000,
             "Grades 9-12, Free for All",
             2000,
+            "By MHHS House Hackathon Club, StellarHacks, CHS Hackathon Club, EastBayHacks, BAHA, & CoveHacks",
+            2000,
           ]}
           wrapper="span"
           speed={50}
@@ -230,6 +234,9 @@ export default function Home() {
     >
     <HeroSection/>
     <AboutSection/>
+    <Schedule/>
+    <Sponsors/>
+
     </div>
     </>
 

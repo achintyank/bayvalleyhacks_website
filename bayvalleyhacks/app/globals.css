@@ -53,6 +53,15 @@ body {
   background-color: #0F110C !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* offset so the fixed navbar doesn't cover section tops when scrolled to */
+[id] {
+  scroll-margin-top: 90px;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

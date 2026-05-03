@@ -1,28 +1,49 @@
 "use client"
 
 function About() {
+    // shared pill style — used for Where?/When? labels and their answers
+    const pillBase = {
+        margin: 0,
+        fontSize: "26px",
+        fontWeight: 500,
+        border: "1px solid rgba(255, 255, 255, 0.17)",
+        borderRadius: "999px",
+        padding: "8px 28px",
+        width: "fit-content",
+    } as const;
+
+    const labelStyle = {
+        ...pillBase,
+        color: "rgba(224, 202, 60, 0.95)",
+        borderColor: "rgba(224, 202, 60, 0.35)",
+    };
+
+    const answerStyle = {
+        ...pillBase,
+        color: "rgba(255, 255, 255, 0.75)",
+    };
+
     return (
-        <div style={{ padding: "40px 60px" }}>
+        <div style={{ padding: "60px 60px", display: "flex", justifyContent: "center" }}>
             <div style={{
-                background: "rgba(8, 8, 12, .4)",
-                backdropFilter: "blur(8px)",
+                background: "rgba(21, 21, 31, 0.4)",
+                backdropFilter: "blur(3px)",
                 border: "1px solid rgba(255, 160, 30, 0.18)",
-                borderRadius: "16px",
-                whiteSpace: "nowrap",
-                paddingTop: "1px",
-                paddingBottom: "7px",
-                paddingLeft: "15px",
-                paddingRight: "15px",
-                display: "inline-block",
-                marginLeft:"10%",
-                marginTop:"8%",
-                width: "1000px",
-                height: "500px",
+                borderRadius: "20px",
+                padding: "48px 56px",
+                width: "100%",
+                maxWidth: "1000px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "28px",
             }}>
                 <h1 style={{
-                    fontSize: "50px",
-                    marginLeft:"5%",
+                    margin: 0,
+                    fontSize: "clamp(36px, 5vw, 56px)",
                     fontWeight: 500,
+                    textAlign: "center",
+                    lineHeight: 1.1,
                     background: "linear-gradient(125deg, #FF6200 0%, #FF8C00 35%, #FFBF00 70%, #FFD700 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -30,68 +51,16 @@ function About() {
                 }}>
                     The Bay Area's largest high school hackathon
                 </h1>
-                <h2
-                    style={{
-                        maxWidth:"150px",
-                        marginLeft:"400px",
-                        marginTop:"50px",
-                        fontSize: "30px",
-                        border: "1px solid rgba(255, 255, 255, 0.17)",
-                        borderRadius: "16px",
-                        color: "rgba(224, 202, 60)",
-                        paddingLeft: "25px",
-                    }}
-                >
-                    Where?
 
-                </h2>
-                <h2
-                    style={{
-                        maxWidth:"800px",
-                        marginTop:"25px",
-                        marginLeft:"80px",
-                        fontSize: "30px",
-                        border: "1px solid rgba(255, 255, 255, 0.17)",
-                        borderRadius: "16px",
-                        color: "rgba(255, 255, 255, 0.37)",
-                        paddingLeft: "25px",
-                        paddingRight: "0px",
-                    }}
-                >
-                    Dublin High School (8151 Village Pkwy, Dublin, CA 94568)
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", marginTop: "16px" }}>
+                    <h2 style={labelStyle}>Where?</h2>
+                    <h2 style={answerStyle}>Dublin High School · 8151 Village Pkwy, Dublin, CA 94568</h2>
+                </div>
 
-                </h2>
-                <h2
-                    style={{
-                        maxWidth:"150px",
-                        marginLeft:"400px",
-                        marginTop:"30px",
-                        fontSize: "30px",
-                        border: "1px solid rgba(255, 255, 255, 0.17)",
-                        borderRadius: "16px",
-                        color: "rgba(224, 202, 60)",
-                        paddingLeft: "25px",
-                    }}
-                >
-                    When?
-
-                </h2>
-                <h2
-                    style={{
-                        maxWidth:"200px",
-                        marginTop:"25px",
-                        marginLeft:"375px",
-                        fontSize: "30px",
-                        border: "1px solid rgba(255, 255, 255, 0.17)",
-                        borderRadius: "16px",
-                        color: "rgba(255, 255, 255, 0.37)",
-                        paddingLeft: "15px",
-                        paddingRight: "0px",
-                    }}
-                >
-                    June 20, 2026
-
-                </h2>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+                    <h2 style={labelStyle}>When?</h2>
+                    <h2 style={answerStyle}>June 20, 2026</h2>
+                </div>
             </div>
         </div>
     );

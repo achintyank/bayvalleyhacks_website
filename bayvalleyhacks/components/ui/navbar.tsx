@@ -20,21 +20,29 @@ export default function Navbar() {
                 whiteSpace: "nowrap",
             }}
         >
-            {/* Logo */}
-            <span style={{
-                color: "#FFB300",
-                fontWeight: 700,
-                fontSize: "17px",
-                letterSpacing: "0.02em",
-                marginRight:"10px",
-                cursor:"pointer",
-            }}>
+            {/* Logo — clicks scroll to top */}
+            <a
+                href="#top"
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                style={{
+                    color: "#FFB300",
+                    fontWeight: 700,
+                    fontSize: "17px",
+                    letterSpacing: "0.02em",
+                    marginRight: "10px",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                }}
+            >
                 BVH
-            </span>
+            </a>
 
             {/* Nav links */}
             <div style={{ display: "flex", gap: "4px" }}>
-                {["About", "Schedule", "Sponsors", "FAQ"].map(link => (
+                {["About", "Schedule", "Sponsors"].map(link => (
                     <a
                         key={link}
                         href={`#${link.toLowerCase()}`}
@@ -54,7 +62,7 @@ export default function Navbar() {
             </div>
 
             {/* CTA */}
-            <button style={{
+            <a style={{
                 padding: "7px 18px",
                 borderRadius: "8px",
                 border: "1px solid rgba(255, 160, 30, 0.45)",
@@ -63,9 +71,11 @@ export default function Navbar() {
                 cursor: "pointer",
                 fontSize: "14px",
                 fontWeight: 600,
-            }}>
+            }}
+            href="https://luma.com/6fla5nan"
+            >
                 Apply
-            </button>
+            </a>
         </nav>
     );
 }
