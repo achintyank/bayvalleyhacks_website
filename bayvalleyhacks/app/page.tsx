@@ -140,7 +140,7 @@ function HeroSection() {
           whileHover= {{scale:1.1}}
           transition= {{ type: "spring", stiffness: 100, damping: 10}}
         >
-          June 18, 2026
+          June 20, 2026
         </motion.button>
 
         <TimeCard value={days} label="Days" />
