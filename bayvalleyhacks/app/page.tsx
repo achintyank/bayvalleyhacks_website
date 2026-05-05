@@ -206,7 +206,7 @@ function HeroSection() {
             2000,
             "Grades 9-12, Free for All",
             2000,
-            "By MHHS House Hackathon Club, StellarHacks, CHS Hackathon Club, EastBayHacks, BAHA, & CoveHacks",
+            "By Mountain House Hackathon Club, StellarHacks, CHS Hackathon Club, EastBayHacks, BAHA, & CoveHacks",
             2000,
           ]}
           wrapper="span"
